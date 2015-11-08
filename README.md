@@ -1,7 +1,7 @@
 Javascript website template
 ---
 
-This is a website template for quick prototyping and testing technology integrations. Many of these technologies are in use or under consideration at [Planfu](http://planfu.com) today. A number of the client-server data technologies are redundant. The intent is to demo the technologies and choose based on project requirements.
+This is a website template for quick prototyping and testing technology integrations. Many of these technologies are in use or under consideration at [Planfu](http://planfu.com) today. A number of the client-server data technologies are redundant. The intent is to get a feel for the technologies and then choose based on project requirements.
 
 Some of the technologies in the current stack:
 
