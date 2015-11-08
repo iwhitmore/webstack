@@ -6,7 +6,7 @@ This is a website template for quick prototyping and testing technology integrat
 Some of the technologies in the current stack:
 
 * React with a PureRender base class
-* Redux with react bindings and reselect
+* Redux with react bindings, ImmutableJS data structure, and reselect
 * Superagent, Falcor, PouchDB, and SocketIO
 * Gulp, Browserify, and Babel for building ES6
 * Mocha, Chai, Sinon, and Istanbul for testing and coverage
