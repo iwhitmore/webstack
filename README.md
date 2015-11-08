@@ -17,7 +17,6 @@ Other technologies pending possible integration in the future:
 * Radium
 * Sample synch and asynch tests
 * RethinkDB's notification with socket.io and/or Couch as a backend for Pouch
-* 
 
 ---
 
