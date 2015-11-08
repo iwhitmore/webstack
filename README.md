@@ -11,12 +11,17 @@ Some of the technologies in the current stack:
 * Gulp, Browserify, and Babel for building ES6
 * Mocha, Chai, Sinon, and Istanbul for testing and coverage
 
-Other technologies pending possible integration in the future:
+Other technologies pending integration:
 
 * Flowtype
 * Radium
 * Sample synch and asynch tests
-* RethinkDB's notification with socket.io and/or Couch as a backend for Pouch
+
+Other technologies pending *possible* integration in the future:
+
+* RethinkDB's notification with socket.io
+* Couch as a backend for Pouch
+* Alternative server environments ([Planfu](http://planfu.com) runs Python on the server, but this is just one possibility)
 
 ---
 
