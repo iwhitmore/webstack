@@ -1,12 +1,12 @@
 import React from 'react'
-import PureComponent from 'local/components/PureComponent'
-import Button from 'local/components/Button'
+import PureComponent from 'usr/components/PureComponent'
+import Button from 'usr/components/Button'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
 import {
   ajaxSave,
   ajaxLoad,
-} from 'local/actions/counters'
+} from 'usr/actions/counters'
 
 
 const selector = createStructuredSelector({

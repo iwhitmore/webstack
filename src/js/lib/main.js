@@ -3,9 +3,9 @@ require('lie/polyfill')
 
 import React from 'react'
 import {render} from 'react-dom'
-import App from 'local/components/App'
+import App from 'usr/components/App'
 import {Provider} from 'react-redux'
-import store from 'local/lib/store'
+import store from 'usr/lib/store'
 
 
 function main() {

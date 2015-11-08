@@ -1,15 +1,15 @@
 import React from 'react'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
-import {countSelector} from 'local/selectors/counters'
+import {countSelector} from 'usr/selectors/counters'
 
-import PureComponent from 'local/components/PureComponent'
-import Counter from 'local/components/Counter'
-import ReduxTest from 'local/components/ReduxTest'
-import SuperagentTest from 'local/components/SuperagentTest'
-import FalcorTest from 'local/components/FalcorTest'
-import PouchTest from 'local/components/PouchTest'
-import SocketIOTest from 'local/components/SocketIOTest'
+import PureComponent from 'usr/components/PureComponent'
+import Counter from 'usr/components/Counter'
+import ReduxTest from 'usr/components/ReduxTest'
+import SuperagentTest from 'usr/components/SuperagentTest'
+import FalcorTest from 'usr/components/FalcorTest'
+import PouchTest from 'usr/components/PouchTest'
+import SocketIOTest from 'usr/components/SocketIOTest'
 
 
 const selector = createStructuredSelector({

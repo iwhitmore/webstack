@@ -1,5 +1,5 @@
 import React from 'react'
-import PureComponent from 'local/components/PureComponent'
+import PureComponent from 'usr/components/PureComponent'
 
 
 class Button extends PureComponent {

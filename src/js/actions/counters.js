@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions'
-import {batchModel} from 'local/lib/falcor'
-import {agent} from 'local/lib/ajax'
-import {db} from 'local/lib/pouchdb'
+import {batchModel} from 'usr/lib/falcor'
+import {agent} from 'usr/lib/ajax'
+import {db} from 'usr/lib/pouchdb'
 
 
 export const inc = createAction('INC_COUNT')
@@ -57,14 +57,21 @@ export function falcorInvalidate() {
 
 
 export function pouchSave(x) {
-  return dispatch => new Promise(resolve => {
-  })
+  return dispatch => {
+    return db.put('count', x)
+    .then(res => {
+      Promise.resolve(dispatch(status()))
+    })
+  }
 }
 
 
 export function pouchLoad() {
-  return dispatch => new Promise(resolve => {
-    db.get('count').then(res => console.log(res.value))
-  })
+  return dispatch => {
+    return db.get('count')
+    .then(res => {
+      Promise.resolve(dispatch(set(res.value)))
+    })
+  }
 }
 

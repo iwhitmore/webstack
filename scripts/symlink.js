@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const src = '../src/js'
-const dest = './node_modules/local'
+const dest = 'node_modules/usr'
 
 fs.lstat(dest, (err, stats) => {
   if (err) {

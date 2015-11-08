@@ -1,6 +1,6 @@
 import React from 'react'
-import PureComponent from 'local/components/PureComponent'
-import Button from 'local/components/Button'
+import PureComponent from 'usr/components/PureComponent'
+import Button from 'usr/components/Button'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
 

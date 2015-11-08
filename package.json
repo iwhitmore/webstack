@@ -1,5 +1,5 @@
 {
-  "name": "brightpuddle",
+  "name": "webstack",
   "main": "./src/js/lib/main.js",
   "version": "0.0.1",
   "description": "Dev template for quick prototyping",
@@ -63,7 +63,6 @@
     "redux-falcor": "^2.3.0",
     "redux-immutablejs": "0.0.7",
     "redux-logger": "^2.0.4",
-    "redux-pouchdb": "0.0.5",
     "redux-routing": "^0.3.0",
     "redux-thunk": "^1.0.0",
     "reselect": "^2.0.0",
