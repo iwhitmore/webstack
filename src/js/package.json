@@ -1,0 +1,5 @@
+{
+  "name": "local",
+  "main": "./lib/main.js",
+  "version": "0.0.1"
+}
