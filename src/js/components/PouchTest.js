@@ -10,13 +10,15 @@ import {
 
 
 const selector = createStructuredSelector({
-  count: state => state.getIn(['counters', 'counter']),
+  count: state => state.getIn(['counters', 'count']),
 })
 
 
 class PouchTest extends PureComponent {
 
   render() {
+    const {dispatch, count} = this.props
+
     return (
       <div>
         <p>PouchDB - persists via local DB and Couch sync</p>

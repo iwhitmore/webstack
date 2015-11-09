@@ -1,7 +1,5 @@
 import PouchDB from 'pouchdb'
 
-const db = new PouchDB('main')
-
-export default db
+export const db = new PouchDB('main')
 
 global.db = db
