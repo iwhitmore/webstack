@@ -1,6 +1,6 @@
-import falcor from 'falcor/dist/falcor.browser.min'
+import {Model} from 'falcor'
+import Source from 'falcor-http-datasource'
 
-const httpDataSource = new falcor.HttpDataSource('/jsongraph')
-export const model = new falcor.Model({source: httpDataSource})
-
+const httpDataSource = new Source('/jsongraph')
+export const model = new Model({source: httpDataSource})
 export const batchModel = model.batch()

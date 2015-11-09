@@ -1,22 +1,22 @@
 require('babel/register')({stage:0})
 require('usr/lib/test')
 
-
 var jsdom = require('jsdom').jsdom
 var gulp = require('gulp')
 var source = require('vinyl-source-stream')
 var taskListing = require('gulp-task-listing')
 var less = require('gulp-less')
 var livereload = require('gulp-livereload')
-var browserify = require('browserify')
-var browserifyInc = require('browserify-incremental')
-var babelify = require('babelify')
+var webpack = require('webpack')
 var mocha = require('gulp-mocha')
 var isparta = require('isparta');
 var istanbul = require('gulp-istanbul');
 var eslint = require('gulp-eslint')
 var gutil = require('gulp-util')
 
+//var browserify = require('browserify')
+//var browserifyInc = require('browserify-incremental')
+//var babelify = require('babelify')
 
 
 function handleError(err) {
@@ -95,6 +95,7 @@ gulp.task('less', function() {
 })
 
 
+/*
 gulp.task('bundle', function() {
   const cacheFile = './.browserify-cache.json'
   const sourceFile = './src/js/lib/main.js'
@@ -110,6 +111,38 @@ gulp.task('bundle', function() {
   .pipe(source('app.js'))
   .pipe(gulp.dest('dist/js'))
   .pipe(livereload())
+})
+*/
+
+
+gulp.task('bundle', function(callback) {
+  webpack({
+    entry: './src/js/lib/main.js',
+    output: {
+      path: './dist/js',
+      filename: 'app.js',
+    },
+    module: {
+      loaders: [{
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react'],
+          cacheDirectory: true 
+        }
+      }]
+    } 
+  }, function (err, stats) {
+    if(err) {
+      throw new gutil.PluginError("webpack", err)
+    }
+    gutil.log("[webpack]", stats.toString({
+      colors: true
+    }))
+    livereload.reload()
+    callback()
+  })
 })
 
 

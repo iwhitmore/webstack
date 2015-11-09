@@ -1,4 +1,4 @@
-require('babel/register')({stage:0})
+//require('babel/register')({stage:0})
 require('lie/polyfill')
 
 import React from 'react'
