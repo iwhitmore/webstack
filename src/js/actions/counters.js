@@ -59,7 +59,7 @@ export function falcorInvalidate() {
 export function pouchSave(x) {
   return dispatch => {
     return db.get('count')
-    .then(doc =>  db.put({value:x}, 'count', doc._rev,))
+    .then(doc =>  db.put({value:x}, 'count', doc._rev))
     .then(res => {
       Promise.resolve(dispatch(status()))
     })

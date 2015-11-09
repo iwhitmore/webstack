@@ -104,7 +104,7 @@ gulp.task('bundle', function() {
     debug: true,
     fullPaths: true,
   }), {cacheFile: cacheFile})
-  .transform(babelify)
+  .transform(babelify, {presets: ['es2015', 'react']})
   .bundle()
   .on ('error', handleError)
   .pipe(source('app.js'))
