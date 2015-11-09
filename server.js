@@ -31,7 +31,7 @@ const TestRouter = Router.createClass([{
 app.use(express.static('dist'))
 
 app.use('/api', bodyParser.json())
-app.use('/api', bodyParser.urlencoded({extended: true}))
+app.use('/jsongraph', bodyParser.urlencoded({extended: true}))
 
 
 app.use('/jsongraph', FalcorServer.dataSourceRoute((req, res) => {
