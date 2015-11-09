@@ -14,6 +14,7 @@ const TestRouter = Router.createClass([{
   route: 'count',
 
   get: function(pathSet) {
+    console.log('PATH_SET', pathSet)
     return {path: ['count'], value: DB.count}
   },
 
@@ -25,13 +26,13 @@ const TestRouter = Router.createClass([{
 }])
 
 
-
 // Server middleware
+
 app.use(express.static('dist'))
 
-app.use(bodyParser.json())
+app.use('/api', bodyParser.json())
+app.use('/api', bodyParser.urlencoded({extended: true}))
 
-app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/jsongraph', FalcorServer.dataSourceRoute((req, res) => {
   return new TestRouter()
@@ -41,8 +42,6 @@ app.use((req, res, next) => {
   console.log(req.method, req.url, req.body)
   next()
 })
-
-
 
 
 // REST endpoints
