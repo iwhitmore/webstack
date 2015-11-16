@@ -34,7 +34,7 @@ This is a website template for quick prototyping and testing technology integrat
 1. Install node >= 4.0.
 2. Install gulp globally (npm install -g gulp)
 3. clone the respoitory locally
-4. cd js-webstack && npm install && gulp && npm start
+4. cd webstack && npm install && gulp && npm start
 5. In another window run gulp watch for automatic rebundling (also supports livereload)
 6. Open http://localhost:3000 in the browser.
 
