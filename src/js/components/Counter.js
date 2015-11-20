@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
-import PureComponent from 'usr/components/PureComponent'
+import PureComponent from '../components/PureComponent'
 
 
 const selector = createStructuredSelector({

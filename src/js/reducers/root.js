@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux-immutablejs'
 
-import counters from 'usr/reducers/counters'
+import counters from '../reducers/counters'
 
 export default combineReducers({
   counters,

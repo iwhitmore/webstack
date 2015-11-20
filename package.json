@@ -10,8 +10,7 @@
     "url": ""
   },
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "node scripts/symlink"
+    "start": "node server.js"
   },
   "optionalDependencies": {
     "usr": "*"

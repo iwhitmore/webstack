@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 import {
   inc,
   dec,
-} from 'usr/actions/counters'
-import {reset} from 'usr/actions/root'
+} from '../actions/counters'
+import {reset} from '../actions/root'
 
-import PureComponent from 'usr/components/PureComponent'
-import Button from 'usr/components/Button'
+import PureComponent from '../components/PureComponent'
+import Button from '../components/Button'
 
 
 

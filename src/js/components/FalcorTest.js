@@ -1,13 +1,13 @@
 import React from 'react'
-import PureComponent from 'usr/components/PureComponent'
-import Button from 'usr/components/Button'
+import PureComponent from '../components/PureComponent'
+import Button from '../components/Button'
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import {
   falcorSave,
   falcorLoad,
   falcorInvalidate,
-} from 'usr/actions/counters'
+} from '../actions/counters'
 
 
 

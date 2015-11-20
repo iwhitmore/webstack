@@ -1,5 +1,5 @@
 require('babel-core/register')
-require('usr/lib/test')
+require('./src/js/lib/test')
 
 var jsdom = require('jsdom').jsdom
 var gulp = require('gulp')

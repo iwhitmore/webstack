@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions'
-import {batchModel} from 'usr/lib/falcor'
-import {agent} from 'usr/lib/ajax'
-import {db} from 'usr/lib/pouchdb'
+import {batchModel} from '../lib/falcor'
+import {agent} from '../lib/ajax'
+import {db} from '../lib/pouchdb'
 
 
 export const inc = createAction('INC_COUNT')
