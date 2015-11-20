@@ -1,4 +1,4 @@
-require('babel/register')({stage:0})
+require('babel-core/register')
 require('usr/lib/test')
 
 var jsdom = require('jsdom').jsdom
