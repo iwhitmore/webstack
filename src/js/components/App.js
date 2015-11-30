@@ -1,4 +1,5 @@
 import React from 'react'
+import Radium from 'radium'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
 import {countSelector} from '../selectors/counters'
@@ -12,11 +13,18 @@ import PouchTest from '../components/PouchTest'
 import SocketIOTest from '../components/SocketIOTest'
 
 
+const styles = {
+  padding: '10px',
+  fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+  fontSize: '14px',
+}
+
+
 class App extends PureComponent {
 
   render() {
     return (
-      <div className="parent">
+      <div style={styles}>
         <Counter/>
         <hr/>
         <ReduxTest/>
@@ -33,4 +41,4 @@ class App extends PureComponent {
   }
 }
 
-export default App
+export default Radium(App)
