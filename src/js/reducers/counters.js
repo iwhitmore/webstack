@@ -12,7 +12,7 @@ const initialState = fromJS({
 export default createReducer(initialState, {
 
   INC_COUNT(state, action) {
-    return state.update('count', x => x + 1)
+    return state.update('count', x => x + 10)
   },
 
   DEC_COUNT(state, action) {

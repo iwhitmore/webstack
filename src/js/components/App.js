@@ -34,8 +34,6 @@ class App extends PureComponent {
         <FalcorTest/>
         <hr/>
         <PouchTest/>
-        <hr/>
-        <SocketIOTest/>
       </div>
     )
   }
