@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
-import PureComponent from '../components/PureComponent'
+import pure from 'recompose/pure'
 
 
 const styles = {
@@ -23,27 +23,26 @@ const styles = {
 
 
 const selector = createStructuredSelector({
-  count: state => state.getIn(['counters', 'count']),
-  loaded: state => state.getIn(['counters', 'loaded']),
-  status: state => state.getIn(['counters', 'status']),
+  count: state => state.counters.count,
+  loaded: state => state.counters.loaded,
+  status: state => state.counters.status,
 })
 
 
-class Counter extends PureComponent {
 
-  render() {
-    return (
-      <div>
-        <span style={styles.counter}>
-          <div style={styles.title}>count</div>
-          <div style={styles.count}>{this.props.count}</div>
-        </span>
-        <span style={{paddingLeft:20}}>
-          {JSON.stringify(this.props)}
-        </span>
-      </div>
-    )
-  }
+function Counter(props) {
+  return (
+    <div>
+      <span style={styles.counter}>
+        <div style={styles.title}>count</div>
+        <div style={styles.count}>{props.count}</div>
+      </span>
+      <span style={{paddingLeft:20}}>
+        {JSON.stringify(props)}
+      </span>
+    </div>
+  )
 }
 
-export default connect(selector)(Counter)
+
+export default connect(selector)(pure(Counter))

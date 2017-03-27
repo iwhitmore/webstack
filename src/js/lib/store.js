@@ -1,17 +1,22 @@
 import {compose, createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-import root from '../reducers/root'
+import {createEpicMiddleware} from 'redux-observable'
+import root from 'js/modules/root'
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+//const epicMiddleware = createEpicMiddleware()
 
 
 const logger = createLogger({
   collapsed: true,
-  transformer: state => state.toJS(),
 })
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunk,
-  logger
+const createStoreWithMiddleware = composeEnhancers(
+  applyMiddleware(thunk)
+  //applyMiddleware(epicMiddleware)
 )(createStore)
 
 
@@ -19,4 +24,3 @@ const store = createStoreWithMiddleware(root)
 
 
 export default store
-global.store = store

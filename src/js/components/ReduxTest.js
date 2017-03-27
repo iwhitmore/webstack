@@ -1,32 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  inc,
-  dec,
-} from '../actions/counters'
-import {reset} from '../actions/root'
+import {inc, dec, reset} from 'js/modules/counters'
+import pure from 'recompose/pure'
 
-import PureComponent from '../components/PureComponent'
-import Button from '../components/Button'
+import Button from 'js/components/Button'
 
 
 
-class ReduxTest extends PureComponent {
-
-  render() {
-    const {dispatch} = this.props
-    
-    return (
-      <div>
-        <p>Redux only - no persistence</p>
-        <p>
+function ReduxTest({dispatch}) {
+  return (
+    <div>
+      <p>Redux only - no persistence</p>
+      <p>
         <Button name="Increment" onClick={() => dispatch(inc())}/>
         <Button name="Decrement" onClick={() => dispatch(dec())}/>
         <Button name="Reset" onClick={() => dispatch(reset())}/>
-        </p>
-      </div>
-    )
-  }
+      </p>
+    </div>
+  )
+
 }
 
-export default connect()(ReduxTest)
+export default connect()(pure(ReduxTest))

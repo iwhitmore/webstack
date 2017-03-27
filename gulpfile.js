@@ -1,37 +1,83 @@
-require('babel-core/register')
-require('./src/js/lib/test')
+'use strict'
 
-var jsdom = require('jsdom').jsdom
-var gulp = require('gulp')
-var source = require('vinyl-source-stream')
-var taskListing = require('gulp-task-listing')
-var less = require('gulp-less')
-var livereload = require('gulp-livereload')
-var webpack = require('webpack')
-var mocha = require('gulp-mocha')
-var isparta = require('isparta');
-var istanbul = require('gulp-istanbul');
-var eslint = require('gulp-eslint')
-var gutil = require('gulp-util')
-
-//var browserify = require('browserify')
-//var browserifyInc = require('browserify-incremental')
-//var babelify = require('babelify')
+// Disable node deprecation warnings
+// babel-loader 6.2.10 generates a warning with webpack 2
+//
+// Github issue:
+// https://github.com/facebookincubator/create-react-app/issues/1620
+process.noDeprecation = true
 
 
-function handleError(err) {
-  gutil.log(err.toString())
-  this.emit('end')
+// Core utilities
+let gulp = require('gulp')
+let taskListing = require('gulp-task-listing')
+let eslint = require('gulp-eslint')
+let webpack = require('webpack')
+let WebpackDevServer = require('webpack-dev-server')
+
+// Helpers
+let gutil = require('gulp-util')
+
+
+
+// Variables
+
+function isProd(override) {
+  let prod = override
+    || gutil.env.production
+    || process.env.NODE_ENV === 'production'
+    || false
+  return prod
 }
 
 
+function getWebpackConfig(override) {
+  let prod = (override || isProd())
+  let webpackImport = require('./webpack.config.js')
+  let config = prod ? webpackImport.production : webpackImport.development
+  let envName = (override || isProd())  ? 'production' : 'development'
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      '__PROD__': prod,
+      'process.env.NODE_ENV':JSON.stringify(envName),
+    })
+  )
+  return config
+}
+
+
+function handleError(err) {
+  if (err) {
+    gutil.log(err.toString())
+    this.emit('end')
+  }
+}
+
+
+// List gulp tasks
 gulp.task('help', taskListing)
 
 
-gulp.task('test', function() {
-  return gulp.src('./test/**/*.js')
-  .pipe(mocha())
+// Build webpack bundle for production
+gulp.task('build', function(callback) {
+  let config = getWebpackConfig(true)
+  config.stats = "none"
+
+  webpack(config, function(err, stats) {
+    handleError(err)
+    gutil.log('[webpack]', stats.toString({colors: true}))
+    callback()
+  })
 })
+
+
+// Run webpack dev server (does not build app.js on disk)
+gulp.task('dev', function(callback) {
+  let config = getWebpackConfig()
+  let server = new WebpackDevServer(webpack(config), config.devServer)
+  server.listen(4000, 'localhost', handleError)
+})
+
 
 
 gulp.task('lint', function() {
@@ -59,104 +105,6 @@ gulp.task('lint', function() {
 })
 
 
-
-gulp.task('cover', function(done) {
-  gulp.src('./src/js/**/*.js')
-  .pipe(istanbul({instrumenter: isparta.Instrumenter})) 
-  .pipe(istanbul.hookRequire())
-  .on('finish', function() {
-    gulp.src(['./test/**/*.js'])
-    .pipe(mocha())
-    .pipe(istanbul.writeReports({
-      dir: './dist/coverage'
-    }))
-    .on('end', done);
-  })
-})
-
-
-gulp.task('tdd', function (done) {
-    gulp.watch([
-    './src/js/**/*.js',
-    './test/**/*.js'
-  ], {interval: 500}, ['test'])
-})
-
-
-gulp.task('less', function() {
-  gulp.src('./src/less/main.less')
-  .pipe(less({paths:[
-    './src/less',
-    './src/less/semantic'
-  ]}))
-  .on('error', function(e) {console.log(e.message)})
-  .pipe(gulp.dest('./dist/css'))
-  .pipe(livereload())
-})
-
-
-/*
-gulp.task('bundle', function() {
-  const cacheFile = './.browserify-cache.json'
-  const sourceFile = './src/js/lib/main.js'
-  return browserifyInc(browserify(sourceFile, {
-    cache: {},
-    packageCache: {},
-    debug: true,
-    fullPaths: true,
-  }), {cacheFile: cacheFile})
-  .transform(babelify, {presets: ['es2015', 'react']})
-  .bundle()
-  .on ('error', handleError)
-  .pipe(source('app.js'))
-  .pipe(gulp.dest('dist/js'))
-  .pipe(livereload())
-})
-*/
-
-
-gulp.task('bundle', function(callback) {
-  webpack({
-    entry: './src/js/lib/main.js',
-    output: {
-      path: './dist/js',
-      filename: 'app.js',
-    },
-    module: {
-      loaders: [{
-        test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react'],
-          cacheDirectory: true 
-        }
-      }]
-    } 
-  }, function (err, stats) {
-    if(err) {
-      throw new gutil.PluginError("webpack", err)
-    }
-    gutil.log("[webpack]", stats.toString({
-      colors: true
-    }))
-    livereload.reload()
-    callback()
-  })
-})
-
-
-gulp.task('watch', ['bundle'], function() {
-  livereload.listen({reloadPage:'./dist/index.html'})
-  gulp.watch('./src/less/**/*.less', {interval: 500}, ['less'])
-  gulp.watch('./src/js/**/*.js', {interval: 500}, ['bundle'])
-  gulp.watch('./dist/index.html', {interval: 500})
-  .on('change', function(file) {
-    livereload.changed(file.path)
-  })
-})
-
-
-gulp.task('default', ['test', 'bundle'])
+gulp.task('default', ['build'])
 
 

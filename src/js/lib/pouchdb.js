@@ -1,17 +1,14 @@
 import PouchDB from 'pouchdb'
 
-export const db = new PouchDB('main')
+const db = new PouchDB('main')
+export default db
 
-PouchDB.debug.disable()
+//PouchDB.debug.disable()
 
-/* Sync to a Couch instance
-const serverDB = PouchDB('...url...')
+//const serverDB = PouchDB('http://localhost:4000/pouch')
 
+// db.sync(serverDB, {
+//   live: true,
+//   retry: false,
+// })
 
-db.sync(serverDB, {
-  live: true,
-  retry: true,
-})
-*/
-
-global.db = db

@@ -1,37 +1,29 @@
 import React from 'react'
-import PureComponent from '../components/PureComponent'
-import Button from '../components/Button'
+import Button from 'js/components/Button'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
-import {
-  ajaxSave,
-  ajaxLoad,
-} from '../actions/counters'
+import {ajaxSave, ajaxLoad} from 'js/modules/counters'
+import pure from 'recompose/pure'
 
 
 const selector = createStructuredSelector({
-  count: state => state.getIn(['counters', 'count'])
+  count: state => state.counters.count,
 })
 
 
-class SuperagentTest extends PureComponent {
+function SuperagentTest({dispatch, count}) {
+  return (
 
-  render() {
-    const {dispatch, count} = this.props
+    <div>
+      <p>Superagent - persists via REST API endpoints</p>
+      <p>
+        <Button name="Save" onClick={() => dispatch(ajaxSave(count))}/>
+        <Button name="Load" onClick={() => dispatch(ajaxLoad())}/>
+      </p>
 
-    return (
+    </div>
+  )
 
-      <div>
-        <p>Superagent - persists via REST API endpoints</p>
-        <p>
-          <Button name="Save" onClick={() => dispatch(ajaxSave(count))}/>
-          <Button name="Load" onClick={() => dispatch(ajaxLoad())}/>
-        </p>
-
-      </div>
-    )
-  }
 }
 
-
-export default connect(selector)(SuperagentTest)
+export default connect(selector)(pure(SuperagentTest))

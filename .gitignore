@@ -1,2 +1,6 @@
 node_modules
 .browserify-cache.json
+.babel-cache
+bundle.js
+bundle.js.map
+app.js

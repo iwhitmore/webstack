@@ -1,16 +1,14 @@
 import React from 'react'
-import Radium from 'radium'
 import {createStructuredSelector} from 'reselect'
 import {connect} from 'react-redux'
-import {countSelector} from '../selectors/counters'
+import {countSelector} from 'js/selectors/counters'
+import pure from 'recompose/pure'
 
-import PureComponent from '../components/PureComponent'
-import Counter from '../components/Counter'
-import ReduxTest from '../components/ReduxTest'
-import SuperagentTest from '../components/SuperagentTest'
-import FalcorTest from '../components/FalcorTest'
-import PouchTest from '../components/PouchTest'
-import SocketIOTest from '../components/SocketIOTest'
+import Counter from 'js/components/Counter'
+import ReduxTest from 'js/components/ReduxTest'
+import SuperagentTest from 'js/components/SuperagentTest'
+import PouchTest from 'js/components/PouchTest'
+import KintoTest from 'js/components/KintoTest'
 
 
 const styles = {
@@ -20,23 +18,21 @@ const styles = {
 }
 
 
-class App extends PureComponent {
-
-  render() {
-    return (
-      <div style={styles}>
-        <Counter/>
-        <hr/>
-        <ReduxTest/>
-        <hr/>
-        <SuperagentTest/>
-        <hr/>
-        <FalcorTest/>
-        <hr/>
-        <PouchTest/>
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div style={styles}>
+      <Counter/>
+      <hr/>
+      <ReduxTest/>
+      <hr/>
+      <SuperagentTest/>
+      <hr/>
+      <PouchTest/>
+      <hr/>
+      <KintoTest/>
+    </div>
+  )
 }
 
-export default Radium(App)
+
+export default pure(App)

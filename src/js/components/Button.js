@@ -1,6 +1,5 @@
 import React from 'react'
-import Radium from 'radium'
-import PureComponent from '../components/PureComponent'
+import pure from 'recompose/pure'
 
 
 const styles = {
@@ -21,17 +20,13 @@ const styles = {
 }
 
 
-class Button extends PureComponent {
-  render() {
-    const {name, onClick} = this.props
-    
-    return (
-      <button style={styles} onClick={() => onClick()}>
-        {name}
-      </button>
-    )
-  }
+function Button({name, onClick}) {
+  return (
+    <button style={styles} onClick={() => onClick()}>
+      {name}
+    </button>
+  )
 }
 
-export default Radium(Button)
+export default pure(Button)
 
