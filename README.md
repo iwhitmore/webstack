@@ -35,8 +35,8 @@ This is a website template for quick prototyping and testing technology integrat
 2. Install gulp globally (npm install -g gulp)
 3. clone the respoitory locally
 4. cd webstack && npm install && gulp && npm start
-5. In another window run gulp watch for automatic rebundling (also supports livereload)
-6. Open http://localhost:3000 in the browser.
+5. In another window run gulp dev
+6. Open http://localhost:4000 in the browser (this is the live reload URL from webpack), otherwise you can hit:     http://localhost:3000
 
 Open the JS console and hack away. Logging is configured on both client and server sides.
 
